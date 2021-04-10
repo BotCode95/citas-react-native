@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
+import Cita from './components/Cita'
 import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
@@ -12,11 +13,11 @@ export default function App() {
   return (
     <View style={styles.contenedor}>
       <Text style={styles.titulo}>Administrador de Citas</Text>
-      {citas.map(cita => (
-        <View> 
-          <Text>(cita.paciente)</Text>
-        </View>
-      ))}
+      <FlatList
+        data={citas}
+        renderItem={ ({item}) => <Cita cita = {item}/>}
+        keyExtractor={cita => cita.id}
+      />
     </View>
   );
 }
